@@ -76,8 +76,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Family Roots",
-  description: "Find your family origins and history",
+  title: "Best Price",
+  description: "Find your cheapest price with a search engine",
 };
 
 export default function RootLayout({
