@@ -4,6 +4,7 @@ import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { Tag } from "lucide-react";
 import { useUserContext } from "../context/UserContext";
 import { ThemeToggle } from "./ThemeToggle";
 import { SidebarTrigger } from "@/components/ui/sidebar";
@@ -23,8 +24,8 @@ export default function Navbar() {
           href="/"
           className="flex items-center gap-1.5 text-lg font-black text-black dark:text-white tracking-tight"
         >
-          <AnimatedTree className="text-xl" />
-          <span className="text-indigo-500">Family Tree</span>
+          <AnimatedTag className="text-xl" />
+          <span className="text-indigo-500">Best Price Search</span>
         </Link>
       </div>
 
@@ -33,10 +34,10 @@ export default function Navbar() {
         href="/"
         className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-2 text-xl font-black text-black dark:text-white tracking-tight"
       >
-        <AnimatedTree className="text-2xl" />
-        <span className="text-indigo-500">Family Tree</span>
+        <AnimatedTag className="text-2xl" />
+        <span className="text-indigo-500">Best Price Search</span>
         <span className="text-purple-500 text-sm font-medium tracking-normal">
-          Find Your True Roots
+          Find the Lowest Price
         </span>
       </Link>
 
@@ -69,10 +70,10 @@ export default function Navbar() {
   );
 }
 
-function AnimatedTree({ className = "" }: { className?: string }) {
+function AnimatedTag({ className = "" }: { className?: string }) {
   return (
     <motion.span
-      className={`inline-block origin-bottom ${className}`}
+      className={`inline-flex origin-bottom items-center ${className}`}
       initial={{ scale: 0, rotate: -15 }}
       animate={{
         scale: 1,
@@ -90,7 +91,7 @@ function AnimatedTree({ className = "" }: { className?: string }) {
       }}
       whileHover={{ scale: 1.15, rotate: 8 }}
     >
-      🌳
+      <Tag className="h-[1em] w-[1em] text-indigo-500" strokeWidth={2.5} />
     </motion.span>
   );
 }
