@@ -16,25 +16,25 @@
 //     <div className="max-w-4xl mx-auto">
 //       {/* Header */}
 //       <div className="mb-8">
-//         <h1 className="text-2xl font-bold text-black dark:text-white">
+//         <h1 className="text-2xl font-bold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)]">
 //           Settings
 //         </h1>
-//         <p className="text-gray-500 dark:text-purple-300">
+//         <p className="text-white/80 [text-shadow:0_1px_3px_rgba(0,0,0,0.6)]">
 //           Personalise your game board experience
 //         </p>
 //       </div>
 
 //       {/* Section */}
-//       <div className="p-6 rounded-2xl border border-gray-200 dark:border-purple-800 bg-white dark:bg-purple-950/40 shadow-sm mb-6">
-//         <h2 className="text-base font-semibold text-black dark:text-white mb-1">
+//       <div className="p-6 rounded-2xl border border-white/30 bg-black/30 backdrop-blur-sm shadow-sm mb-6">
+//         <h2 className="text-base font-semibold text-white mb-1">
 //           Game Board Background
 //         </h2>
-//         <p className="text-sm text-gray-500 dark:text-purple-400 mb-5">
+//         <p className="text-sm text-white/70 mb-5">
 //           Hover to preview · click to select · saved automatically
 //         </p>
 
 //         {/* Live preview strip */}
-//         <div className="relative w-full h-36 rounded-xl overflow-hidden mb-6 border border-gray-200 dark:border-purple-800">
+//         <div className="relative w-full h-36 rounded-xl overflow-hidden mb-6 border border-white/30">
 //           {/* Actual background — img tag is most reliable */}
 //           {activeBg.src ? (
 //             <img
@@ -85,11 +85,11 @@
 //                 onMouseEnter={() => setPreviewId(bg.id)}
 //                 onMouseLeave={() => setPreviewId(null)}
 //                 onClick={() => setBackground(bg.id)}
-//                 className="relative aspect-[3/4] rounded-xl overflow-hidden border-2 transition-all focus:outline-none"
+//                 className="relative aspect-[3/4] rounded-xl overflow-hidden border-2 transition-all focus:outline-none group"
 //                 style={{
-//                   borderColor: isSelected ? "#9333ea" : "transparent",
+//                   borderColor: isSelected ? "#ffffff" : "transparent",
 //                   boxShadow: isSelected
-//                     ? "0 0 0 1px #9333ea, 0 0 16px rgba(147,51,234,0.4)"
+//                     ? "0 0 0 1px #ffffff, 0 0 16px rgba(255,255,255,0.4)"
 //                     : "0 2px 8px rgba(0,0,0,0.2)",
 //                 }}
 //               >
@@ -126,10 +126,13 @@
 //                   />
 //                 )}
 
+//                 {/* Hover glass tint */}
+//                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
+
 //                 {/* No thumbnail placeholder */}
 //                 {!bg.thumbnail && bg.id !== "felt" && (
 //                   <div className="absolute inset-0 flex items-center justify-center">
-//                     <ImageOff size={16} className="text-white/30" />
+//                     <ImageOff size={16} className="text-white/50" />
 //                   </div>
 //                 )}
 
@@ -147,7 +150,7 @@
 //                       initial={{ opacity: 0, scale: 0.5 }}
 //                       animate={{ opacity: 1, scale: 1 }}
 //                       exit={{ opacity: 0, scale: 0.5 }}
-//                       className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-purple-600 flex items-center justify-center"
+//                       className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-black flex items-center justify-center border border-white/50"
 //                     >
 //                       <Check size={11} className="text-white" />
 //                     </motion.div>
@@ -160,25 +163,25 @@
 //       </div>
 
 //       {/* How to add backgrounds hint */}
-//       {/* <div className="p-4 rounded-2xl border border-dashed border-gray-300 dark:border-purple-800/60 text-sm text-gray-400 dark:text-purple-500">
-//         <p className="font-semibold mb-1 text-gray-500 dark:text-purple-400">
+//       {/* <div className="p-4 rounded-2xl border border-dashed border-white/30 text-sm text-white/60">
+//         <p className="font-semibold mb-1 text-white/70">
 //           Adding custom backgrounds
 //         </p>
 //         <p>
 //           Drop image files into{" "}
-//           <code className="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-purple-900/40 text-xs font-mono">
+//           <code className="px-1.5 py-0.5 rounded bg-black/40 text-xs font-mono text-white">
 //             /public/backgrounds/
 //           </code>{" "}
 //           and register them in{" "}
-//           <code className="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-purple-900/40 text-xs font-mono">
+//           <code className="px-1.5 py-0.5 rounded bg-black/40 text-xs font-mono text-white">
 //             BackgroundContext.tsx
 //           </code>
 //           . Recommended: 1920×1080 JPG for{" "}
-//           <code className="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-purple-900/40 text-xs font-mono">
+//           <code className="px-1.5 py-0.5 rounded bg-black/40 text-xs font-mono text-white">
 //             src
 //           </code>
 //           , 400×225 JPG for{" "}
-//           <code className="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-purple-900/40 text-xs font-mono">
+//           <code className="px-1.5 py-0.5 rounded bg-black/40 text-xs font-mono text-white">
 //             thumbnail
 //           </code>
 //           .
@@ -187,20 +190,40 @@
 //     </div>
 //   );
 // }
-
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, ImageOff } from "lucide-react";
+import { Check, ImageOff, Globe2 } from "lucide-react";
 import { BACKGROUNDS, useBackground } from "@/app/context/BackgroundContext";
 import { useState } from "react";
+import { useMutation } from "convex/react";
+import { api } from "@/convex/_generated/api";
+import { COUNTRIES } from "@/convex/lib";
+import { useUserContext } from "@/app/context/UserContext";
+import { toast } from "sonner";
 
 export default function SettingsPage() {
   const { selected, setBackground } = useBackground();
   const [previewId, setPreviewId] = useState<string | null>(null);
-
   const activeId = previewId ?? selected.id;
   const activeBg = BACKGROUNDS.find((b) => b.id === activeId) ?? BACKGROUNDS[0];
+
+  const user = useUserContext();
+  const setCountry = useMutation(api.users.setCountry);
+  const [savingCountry, setSavingCountry] = useState<string | null>(null);
+  const currentCountry = user?.country ?? "za";
+
+  async function handleCountrySelect(code: string) {
+    if (code === currentCountry) return;
+    setSavingCountry(code);
+    try {
+      await setCountry({ country: code });
+    } catch {
+      toast.error("Couldn't update your region — try again.");
+    } finally {
+      setSavingCountry(null);
+    }
+  }
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -210,8 +233,66 @@ export default function SettingsPage() {
           Settings
         </h1>
         <p className="text-white/80 [text-shadow:0_1px_3px_rgba(0,0,0,0.6)]">
-          Personalise your game board experience
+          Personalise your search experience
         </p>
+      </div>
+
+      {/* Region section */}
+      <div className="p-6 rounded-2xl border border-white/30 bg-black/30 backdrop-blur-sm shadow-sm mb-6">
+        <div className="mb-5 flex items-center gap-2">
+          <Globe2 className="h-4 w-4 text-white/70" />
+          <div>
+            <h2 className="text-base font-semibold text-white">
+              Region &amp; currency
+            </h2>
+            <p className="text-sm text-white/70">
+              Searches default to retailers and pricing for this country — e.g.
+              South Africa surfaces Takealot, Makro, and prices in Rand.
+            </p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+          {COUNTRIES.map((country) => {
+            const isSelected = currentCountry === country.code;
+            const isSaving = savingCountry === country.code;
+            return (
+              <button
+                key={country.code}
+                onClick={() => handleCountrySelect(country.code)}
+                disabled={isSaving}
+                className="relative flex flex-col gap-0.5 rounded-xl border-2 px-4 py-3 text-left transition-all disabled:opacity-60"
+                style={{
+                  borderColor: isSelected
+                    ? "#ffffff"
+                    : "rgba(255,255,255,0.15)",
+                  background: isSelected
+                    ? "rgba(255,255,255,0.12)"
+                    : "rgba(0,0,0,0.15)",
+                }}
+              >
+                <span className="text-sm font-semibold text-white">
+                  {country.label}
+                </span>
+                <span className="text-xs text-white/60">
+                  {country.currency}
+                </span>
+                <AnimatePresence>
+                  {isSelected && (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.5 }}
+                      className="absolute top-2 right-2 w-5 h-5 rounded-full bg-white flex items-center justify-center"
+                    >
+                      <Check size={11} className="text-black" />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       {/* Section */}
@@ -225,7 +306,7 @@ export default function SettingsPage() {
 
         {/* Live preview strip */}
         <div className="relative w-full h-36 rounded-xl overflow-hidden mb-6 border border-white/30">
-          {/* Actual background — img tag is most reliable */}
+          {/* Actual background --- img tag is most reliable */}
           {activeBg.src ? (
             <img
               src={activeBg.src}
@@ -307,7 +388,6 @@ export default function SettingsPage() {
                     />
                   </div>
                 )}
-
                 {/* Overlay tint */}
                 {bg.overlay && (
                   <div
@@ -315,24 +395,20 @@ export default function SettingsPage() {
                     style={{ background: bg.overlay }}
                   />
                 )}
-
                 {/* Hover glass tint */}
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
-
                 {/* No thumbnail placeholder */}
                 {!bg.thumbnail && bg.id !== "felt" && (
                   <div className="absolute inset-0 flex items-center justify-center">
                     <ImageOff size={16} className="text-white/50" />
                   </div>
                 )}
-
                 {/* Label */}
                 <div className="absolute bottom-0 inset-x-0 px-1.5 py-1 bg-black/50 backdrop-blur-sm">
                   <p className="text-white text-[9px] font-semibold text-center truncate">
                     {bg.label}
                   </p>
                 </div>
-
                 {/* Selected checkmark */}
                 <AnimatePresence>
                   {isSelected && (
@@ -351,32 +427,6 @@ export default function SettingsPage() {
           })}
         </div>
       </div>
-
-      {/* How to add backgrounds hint */}
-      {/* <div className="p-4 rounded-2xl border border-dashed border-white/30 text-sm text-white/60">
-        <p className="font-semibold mb-1 text-white/70">
-          Adding custom backgrounds
-        </p>
-        <p>
-          Drop image files into{" "}
-          <code className="px-1.5 py-0.5 rounded bg-black/40 text-xs font-mono text-white">
-            /public/backgrounds/
-          </code>{" "}
-          and register them in{" "}
-          <code className="px-1.5 py-0.5 rounded bg-black/40 text-xs font-mono text-white">
-            BackgroundContext.tsx
-          </code>
-          . Recommended: 1920×1080 JPG for{" "}
-          <code className="px-1.5 py-0.5 rounded bg-black/40 text-xs font-mono text-white">
-            src
-          </code>
-          , 400×225 JPG for{" "}
-          <code className="px-1.5 py-0.5 rounded bg-black/40 text-xs font-mono text-white">
-            thumbnail
-          </code>
-          .
-        </p>
-      </div> */}
     </div>
   );
 }
